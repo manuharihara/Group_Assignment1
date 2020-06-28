@@ -7,10 +7,7 @@ namespace groupassignment
 {
     class groupassignment_1
     {
-        // Start of the Process
-
-
-        // 
+        // Start of the method to perform decesnding order
         public static string FreqSort(string Word)
         {
             
@@ -28,34 +25,53 @@ namespace groupassignment
 
         }
 
-        public static int countPairs(string[] arr, int n)
+        // Start of the method to perform Absolute diffrence 2 values in an array
+        public static bool ContainsDuplicate(string[] arr, int k)
         {
-            // A method to return number of pairs  
-            // with equal values 
-            Dictionary<string, int> userdict = new Dictionary<string, int>();
+            // Diclare varables used in the methid
+            int l = arr.Length;
+            bool found = false;
 
-            // Finding frequency of each number. 
-            for (int i = 0; i < n; i++)
+            // Using 2 for loops to check the same char is avilable with in the array  
+            for (int i = 0; i < l; i++)
             {
-                if (userdict.ContainsKey(arr[i]))
+
+                for (int x = i + 1; x < l; x++)
+
                 {
-                    int a = userdict[arr[i]];
-                    userdict.Remove(arr[i]);
-                    userdict.Add(arr[i], a + 1);
-                }
-                else
-                    userdict.Add(arr[i], 1);
-            }
-            int ans = 0;
+          
+                    //Check for the same value available
+                    if (arr[i] == arr[x])
 
-            // Calculating count of pairs with  
-            // equal values 
-            foreach (var it in userdict)
-            {
-                int count = it.Value;
-                ans += (count * (count - 1)) / 2;
+                    {
+                        //Check for the absolute diffrence
+                        int diff = x - i;
+            
+                        if (diff == k)
+                        {
+                            //If absolute diffrence matched Mark the value as true.
+                            return found = true;
+
+                            //If absolute diffrence matched , Ending the for loop
+                            i = l;
+                            x = l;
+
+                        }
+                        else
+                        {
+                            found = false;
+                        }
+
+                    }
+                    else
+                    {
+                        found = false;
+                    }
+                }
             }
-            return ans;
+
+            // methid output
+            return found;
         }
 
         static void Main(string[] args)
@@ -67,7 +83,7 @@ namespace groupassignment
             string val;
             int key;
             int i,n,k, useroption;
-            string[] UserInputArray = new string[100];
+            
             Dictionary<int, string> UserData = new Dictionary<int, string>();
             //static Dictionary<string, string> UserData = new Dictionary<string, string>();
 
@@ -136,7 +152,7 @@ namespace groupassignment
                     // string[] UserSortedOutput = Array.Sort(word.Value);
                     // Console.WriteLine(String.Join(" \n", word));
 
-                    Console.WriteLine(word.Key + ": Sorted Output for Word {" + word.Value + "} is { " + UserSortedOutput + "}");
+                    Console.WriteLine(word.Key + ": Sorted Output for Word {" + word.Value + "} is {" + UserSortedOutput + "}");
                 }
 
                 //string UserSortedOutput = WordSort(word.Value, numbersArray);
@@ -148,6 +164,7 @@ namespace groupassignment
             else if (useroption == 6)
             {
                 //Start of the Program
+
                 Console.Write("Please Input the how many letters you want to enter in Array :");
                 string userInputnumber = Console.ReadLine();
 
@@ -158,11 +175,13 @@ namespace groupassignment
                     userInputnumber = Console.ReadLine();
                 }
 
+                string[] UserInputArray = new string[n];
 
                 for (i = 0; i < n; i++)
                 {
                     int x = i + 1;
                     Console.Write("Enter your Input into Array - {0} : ", x);
+                    
 
                     //Validate the User entered number and if not Print the error and request them to Reenter the Number
                     UserInputArray[i] = Console.ReadLine();
@@ -183,18 +202,25 @@ namespace groupassignment
 
 
                 // Create the List of the numbers user inputed into an array
-
+                Console.Clear();
                 Console.Write("\nThe List of Characters provided in Array Are : \n");
+
                 for (i = 0; i < UserInputArray.Length; i++)
                 {
                     Console.Write("{0}  ", UserInputArray[i]);
                 }
+                
                 Console.Write("\n");
 
                 Console.Write("\nThe absolute difference you wanted to check is : {0} \n",k);
 
-                Console.WriteLine(countPairs(UserInputArray, UserInputArray.Length));
+                //Console.WriteLine(arryabsdiff(UserInputArray, k));
+                Console.Write("\n");
+                bool Userabsdiffout = ContainsDuplicate(UserInputArray,k);
+                // string[] UserSortedOutput = Array.Sort(word.Value);
+                // Console.WriteLine(String.Join(" \n", word));
 
+                Console.WriteLine("User requested Absolute diffrence is { " + Userabsdiffout + "}");
 
             }
             else
