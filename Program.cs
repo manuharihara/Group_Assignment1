@@ -1,39 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Linq;
-using System;
-using System.Collections;
-using System.Security.Cryptography;
+
 
 namespace groupassignment
 {
     class groupassignment_1
     {
-        // Start of the method to perform decesnding order
-        public static string FreqSort(string Word)
-        {
-            
-            // Convert to char array.
-            char[] sortoutput = Word.ToCharArray();
 
-            // Sort letters.
-            Array.Sort(sortoutput);
-
-            // reverse array 
-            //Array.Reverse(sortoutput);
-            for (int i = 0, j = Word.Length - 1; i < j; i++, j--)
-            {
-                char c = sortoutput[i];
-                sortoutput[i] = sortoutput[j];
-                sortoutput[j] = c;
-            }
-
-
-            // Return modified string.
-            return new string(sortoutput);
-
-        }
+        //For Assinment-1 , Question2
+        //This Method will calculate the minsum for an unique numbers in array.
         public static int minSum(int[] arr)
         {
             int l = arr.Length;
@@ -47,40 +26,47 @@ namespace groupassignment
             for (int i = 0; i < arr.Length; i++)
             {
 
-                temp2 = arr[i];
-                diff = temp2 - tmp;
+                temp2 = arr[i]; //assign the number from array to varaible.
+                diff = temp2 - tmp; //Checking the diffrence with preious number
 
+
+                //Always making sure first number in array goes as is after sort.
                 if (i == 0)
                 {
                     sum = sum + temp2;
                     tmp = temp2;
                 }
-                else if (diff > 0)
+                else if (diff > 0) //Making sure the diffrence between previous and current number is always greater than 0
                 {
                     sum = sum + temp2;
                     tmp = temp2;
                 }
-                else
+                else //If diffrence is eqial to 0, then making sure we add +1 and increment the number
                 {
                     tmp = temp2 + diff + 1;
                     sum = sum + tmp;
 
                 }
-            
+
             }
 
+            //program will print the sum output
             return sum;
         }
 
+        //For Assingment-1, Question-3
+        // This  method is revese the words and print complete string
         public static string StringReverse(string s)
         {
             ArrayList ar = new ArrayList();
-            s=s+" ";
-            string result="";
-            string resultoutput="";
-            string tmp = "";
-            string temp2 = " ";
 
+            //adding space to end of the strinng as split
+            s = s + " ";
+            string result = "";
+            string resultoutput = "";
+            string tmp = "";
+           
+            //Split  the string based on the space
             for (int i = 0; i < s.Length; i++)
             {
 
@@ -89,11 +75,12 @@ namespace groupassignment
                     tmp = tmp + s[i];
                     continue;
                 }
-                
+
                 ar.Add(tmp);
                 tmp = "";
             }
 
+            //Reverse the string 
             foreach (string a in ar)
             {
 
@@ -107,34 +94,44 @@ namespace groupassignment
 
                 result = string.Join("", chars);
 
-                resultoutput = resultoutput +" " + result;
-                
+                resultoutput = resultoutput + " " + result;
+
             }
-            
-            
+
+
             return resultoutput;
-              
+
         }
 
-        private static bool ContainsValue(List<string> elements, string elementToBeFound)
+
+        //For Assingment-1, Question-4
+        // Start of the method to Print the Wordds in Descending order
+        public static string FreqSort(string Word)
         {
-            if (elements == null)
-                throw new ArgumentNullException("elements");
 
-            if (elements.Count > 0)
+            // Convert string to array.
+            char[] sortoutput = Word.ToCharArray();
+
+            // Sort the array.
+            Array.Sort(sortoutput);
+
+            // to reverse an array 
+            //Array.Reverse(sortoutput);
+            for (int i = 0, j = Word.Length - 1; i < j; i++, j--)
             {
-                for (int count = 0; count < elements.Count; count++)
-                {
-                    if (elements[count].Equals(elementToBeFound))
-                    {
-                        return true;
-                    }
-                }
+                char c = sortoutput[i];
+                sortoutput[i] = sortoutput[j];
+                sortoutput[j] = c;
             }
-            return false;
+
+
+            // Return modified string.
+            return new string(sortoutput);
+
         }
 
-        // Start of the method to perform Absolute diffrence 2 values in an array
+        //For Assingment-1, Question-6
+        // This  method will check for the Absolute diffrence 2 identical values in an array and print true/false
         public static bool ContainsDuplicate(string[] arr, int k)
         {
             // Diclare varables used in the methid
@@ -144,43 +141,34 @@ namespace groupassignment
             // Using 2 for loops to check the same char is avilable with in the array  
             for (int i = 0; i < l; i++)
             {
-                
+
 
                 for (int x = i + 1; x < l; x++)
 
                 {
-          
+
                     //Check for the same value available
                     if (arr[i] == arr[x])
 
                     {
                         //Check for the absolute diffrence
                         int diff = x - i;
-            
-                        if (diff == k)
+
+                        if (diff != k)
                         {
-                            //If absolute diffrence matched Mark the value as true.
-                            return found = true;
-
-                            //If absolute diffrence matched , Ending the for loop
-                            i = l;
-                            x = l;
-
+                            continue;
                         }
                         else
                         {
-                            found = false;
+                            return found = true;
                         }
 
                     }
-                    else
-                    {
-                        found = false;
-                    }
+ 
                 }
             }
 
-            // methid output
+            // program wil return boolian output
             return found;
         }
 
@@ -192,8 +180,8 @@ namespace groupassignment
             string userInput;
             string val;
             int key;
-            int i,n,k, useroption;
-            
+            int i, n, k, useroption;
+
             Dictionary<int, string> UserData = new Dictionary<int, string>();
             //static Dictionary<string, string> UserData = new Dictionary<string, string>();
 
@@ -203,11 +191,11 @@ namespace groupassignment
             //Obtain Userinput for Which operation they wanted to perform
             Console.Write("\n\n Please Select the Program you want to Run:");
             Console.Write("\n\n Enter 1 to find greatest Number from the Liast of Numbers");
-            Console.Write("\n\n Enter 2 to search number using array");
-            Console.Write("\n\n Enter 3 to search number using Dictionary");
-            Console.Write("\n\n Enter 4 to Sort the Each word from given string.");
+            Console.Write("\n\n Enter 2 to Reverse String");
+            Console.Write("\n\n Enter 3 to Provide Minimum Sum possible");
+            Console.Write("\n\n Enter 4 to Sort the Each word from print string output.");
             Console.Write("\n\n Enter 5 to Compute Intersection of two arrays.");
-            Console.Write("\n\n Enter 6 to Compute absolute difference in an given array.");
+            Console.Write("\n\n Enter 6 to Print True or Flase based on the absolute difference matched with in array.");
             Console.Write("\n\nEnter your Choise Now:");
 
             //Validate the User entered number and if not Print the error and request them to Reenter the Number
@@ -229,7 +217,7 @@ namespace groupassignment
             {
 
                 Console.Write("Please Enter your Text:");
-                
+
                 //Validate the User entered number and if not Print the error and request them to Reenter the Number
                 userInput = Console.ReadLine();
 
@@ -345,7 +333,7 @@ namespace groupassignment
                 {
                     int x = i + 1;
                     Console.Write("Enter your Input into Array - {0} : ", x);
-                    
+
 
                     //Validate the User entered number and if not Print the error and request them to Reenter the Number
                     UserInputArray[i] = Console.ReadLine();
@@ -354,7 +342,7 @@ namespace groupassignment
                 }
 
                 Console.Write("Please Input The absolute difference you want to check:");
-                
+
                 string userInputnumber6 = Console.ReadLine();
 
                 while (!int.TryParse(userInputnumber6, out k))
@@ -374,17 +362,19 @@ namespace groupassignment
                     Console.Write("{0}  ", UserInputArray[i]);
                 }
                 
+                Console.Clear();
                 Console.Write("\n");
 
-                Console.Write("\nThe absolute difference you wanted to check is : {0} \n",k);
+                Console.Write("\nThe absolute difference you wanted to check is : {0} \n", k);
 
                 //Console.WriteLine(arryabsdiff(UserInputArray, k));
                 Console.Write("\n");
-                bool Userabsdiffout = ContainsDuplicate(UserInputArray,k);
+                bool Userabsdiffout = ContainsDuplicate(UserInputArray, k);
                 // string[] UserSortedOutput = Array.Sort(word.Value);
                 // Console.WriteLine(String.Join(" \n", word));
 
-                Console.WriteLine("User requested Absolute diffrence is { " + Userabsdiffout + "}");
+                Console.WriteLine("User requested Absolute diffrence is {" + Userabsdiffout + "}");
+                Console.Write("\n\n");
 
             }
             else
