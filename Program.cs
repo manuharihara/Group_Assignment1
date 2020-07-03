@@ -54,6 +54,43 @@ namespace groupassignment
             return sum;
         }
 
+        //For Assinment-1 , Question1
+        //This Method will calculate the minsum for an unique numbers in array.
+        public static int[] targetRange(int[] a, int x)
+        {
+            int n = a.Length;
+            List<int> result = new List<int>();
+            int initial = -1, last = -1;
+            for (int i = 0; i < n; i++)
+            {
+                if (x == a[i])
+                {
+                    initial = i;
+                    break;
+                }
+            }
+
+            result.Add(initial);
+
+            for (int j = n-1; j>=0; j--)
+            {
+                if (x == a[j])
+                {
+                    last = j;
+                    break;
+                }
+            }
+
+            result.Add(last);
+
+            return result.ToArray();
+
+        }
+
+
+
+  
+
         //For Assingment-1, Question-3
         // This  method is revese the words and print complete string
         public static string StringReverse(string s)
@@ -128,6 +165,41 @@ namespace groupassignment
             // Return modified string.
             return new string(sortoutput);
 
+        }
+
+        //For Assingment-1, Question-5
+        // This  method will check for common numbers between two arrays
+        public static int[] Intersect1(int[] nums1, int[] nums2)
+        {
+            int i, x;
+            int l1 = nums1.Length;
+            int l2 = nums2.Length;
+            Array.Sort(nums1);
+            Array.Sort(nums2);
+
+            List<int> result = new List<int>();
+
+            foreach (int num in nums1)
+            {
+                x = 0;
+                i = x;
+                for (i = 0; i < l2; i++)
+                {
+
+                    if (num == nums2[i])
+                    {
+
+                        result.Add(nums2[i]);
+                        i = l2;
+                        x = i;
+                       
+                    }
+                }
+                
+            }
+
+            return result.ToArray();
+            
         }
 
         //For Assingment-1, Question-6
@@ -211,6 +283,50 @@ namespace groupassignment
 
             if (useroption == 1)
             {
+
+                
+                Console.Write("Input the number of elements to store in the array : ");
+                userInput = Console.ReadLine();
+                while (!int.TryParse(userInput, out n))
+                {
+                    Console.WriteLine("You entered {0}, This is not a number!", userInput);
+                    Console.Write("Please provide a number :");
+                    userInput = Console.ReadLine();
+                }
+
+                int[] a = new int[n];
+                Console.Write("Input {0} number of elements in the array :\n", n);
+                for (i = 0; i < n; i++)
+                {
+                    Console.Write("Enter Number {0} : ", i);
+                    string UserInput = Console.ReadLine();
+                    while (!int.TryParse(UserInput, out a[i]))
+                    {
+                        Console.WriteLine("You entered {0}, This is not a number!", UserInput);
+                        Console.Write("Enter Number {0} :", i);
+                        UserInput = Console.ReadLine();
+                    }
+                }
+                Console.Write("Enter Target Number: ");
+                //x = Convert.ToInt32(Console.ReadLine());
+                string Userinput = Console.ReadLine();
+                while (!int.TryParse(Userinput, out n))
+                {
+                    Console.WriteLine("You entered {0}, This is not a number!", Userinput);
+                    Console.Write("Please provide a number :");
+                    Userinput = Console.ReadLine();
+                }
+
+                int[] result= targetRange(a, n);
+
+
+                    Console.Write("Output is : \n");
+
+                    for (i = 0; i < result.Length; i++)
+                    {
+                       Console.Write("{0} ", result[i]);
+                    }
+                    
 
             }
             else if (useroption == 2)
@@ -312,6 +428,99 @@ namespace groupassignment
             else if (useroption == 5)
             {
 
+
+                Console.Write("Input the number of elements to store in the array-1 : ");
+                userInput = Console.ReadLine();
+                while (!int.TryParse(userInput, out n))
+                {
+                    Console.WriteLine("You entered {0}, This is not a number!", userInput);
+                    Console.Write("Please provide a number :");
+                    userInput = Console.ReadLine();
+                }
+
+                int[] UserInputArray1 = new int[n];
+
+                Console.Write("Input {0} number of elements in the array-1 :\n", n);
+                for (i = 0; i < n; i++)
+                {
+                    Console.Write("Enter Number {0} : ", i);
+                    string UserInput = Console.ReadLine();
+                    while (!int.TryParse(UserInput, out UserInputArray1[i]))
+                    {
+                        Console.WriteLine("You entered {0}, This is not a number!", UserInput);
+                        Console.Write("Enter Number {0} :", i);
+                        UserInput = Console.ReadLine();
+                    }
+                }
+
+
+
+                Console.Write("Input the number of elements to store in the array-2 : ");
+                userInput = Console.ReadLine();
+                while (!int.TryParse(userInput, out n))
+                {
+                    Console.WriteLine("You entered {0}, This is not a number!", userInput);
+                    Console.Write("Please provide a number :");
+                    userInput = Console.ReadLine();
+                }
+
+                int[] UserInputArray2 = new int[n];
+
+                Console.Write("Input {0} number of elements in the array-2 :\n", n);
+                for (i = 0; i < n; i++)
+                {
+                    Console.Write("Enter Number {0} : ", i);
+                    string UserInput = Console.ReadLine();
+                    while (!int.TryParse(UserInput, out UserInputArray2[i]))
+                    {
+                        Console.WriteLine("You entered {0}, This is not a number!", UserInput);
+                        Console.Write("Enter Number {0} :", i);
+                        UserInput = Console.ReadLine();
+                    }
+                }
+
+                Console.Clear();
+                Console.Write("\nThe List of Numbers in Array-1 Are : \n");
+
+                for (i = 0; i < UserInputArray1.Length; i++)
+                {
+                    Console.Write("{0}  ", UserInputArray1[i]);
+                }
+
+             
+                Console.Write("\nThe List of Numbers in Array-2 Are : \n");
+
+                for (i = 0; i < UserInputArray2.Length; i++)
+                {
+                    Console.Write("{0}  ", UserInputArray2[i]);
+                }
+
+
+                int[] Output1 = new int[n];
+
+                Output1=Intersect1(UserInputArray1, UserInputArray2);
+
+
+                if (Output1.Length>0)
+                {
+
+                    Console.Write("\nThe List of Common Numbers from User Provided Array's : \n");
+                    for (i = 0; i < Output1.Length; i++)
+                    {
+                        Console.Write("{0}  ", Output1[i]);
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("\n\n There are No Common Numbers Available between Two Arrays !! \n\n");
+                }
+
+
+
+
+
+
             }
             else if (useroption == 6)
             {
@@ -362,7 +571,7 @@ namespace groupassignment
                     Console.Write("{0}  ", UserInputArray[i]);
                 }
                 
-                Console.Clear();
+                //Console.Clear();
                 Console.Write("\n");
 
                 Console.Write("\nThe absolute difference you wanted to check is : {0} \n", k);
