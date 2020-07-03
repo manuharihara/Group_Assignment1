@@ -54,8 +54,8 @@ namespace groupassignment
             return sum;
         }
 
-        //For Assinment-1 , Question1
-        //This Method will calculate the minsum for an unique numbers in array.
+        //For Assinment-1 , Question2
+        //This Method will calculate the First and Last position of target numbers in array.
         public static int[] targetRange(int[] a, int x)
         {
             int n = a.Length;
