@@ -11,6 +11,48 @@ namespace groupassignment
     class groupassignment_1
     {
 
+
+        //For Assinment-1 , Question1
+        //This Method will print  the First and Last position of target number requested in array.
+        public static int[] targetRange(int[] a, int x)
+        {
+            int n = a.Length;
+            List<int> result = new List<int>();
+            int initial = -1, last = -1;
+
+            //to identify the initial position.
+            for (int i = 0; i < n; i++)
+            {
+                if (x == a[i])
+                {
+                    initial = i;
+                    break;
+                }
+            }
+
+            result.Add(initial);
+
+            if (initial >= 0)
+            {
+
+                //to identify the Last position until the intaial position
+                for (int j = n - 1; j >= initial; j--)
+                {
+                    if (x == a[j])
+                    {
+                        last = j;
+                        break;
+                    }
+                }
+            }
+            
+            result.Add(last);
+            
+
+            return result.ToArray();
+
+        }
+
         //For Assinment-1 , Question2
         //This Method will calculate the minsum for an unique numbers in array.
         public static int minSum(int[] arr)
@@ -54,38 +96,6 @@ namespace groupassignment
             return sum;
         }
 
-        //For Assinment-1 , Question2
-        //This Method will calculate the First and Last position of target numbers in array.
-        public static int[] targetRange(int[] a, int x)
-        {
-            int n = a.Length;
-            List<int> result = new List<int>();
-            int initial = -1, last = -1;
-            for (int i = 0; i < n; i++)
-            {
-                if (x == a[i])
-                {
-                    initial = i;
-                    break;
-                }
-            }
-
-            result.Add(initial);
-
-            for (int j = n-1; j>=0; j--)
-            {
-                if (x == a[j])
-                {
-                    last = j;
-                    break;
-                }
-            }
-
-            result.Add(last);
-
-            return result.ToArray();
-
-        }
 
 
 
