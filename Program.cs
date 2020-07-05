@@ -13,7 +13,7 @@ namespace groupassignment
 
 
         //For Assinment-1 , Question1
-        //This Method will print  the First and Last position of target number requested in array.
+        //This Method will print  the First and Last position of target number requested in array. We are sill maintaining the Time complexity to O(n)
         public static int[] targetRange(int[] a, int x)
         {
             int n = a.Length;
@@ -53,12 +53,56 @@ namespace groupassignment
 
         }
 
-        //For Assinment-1 , Question2
+        //For Assingment-1, Question-2
+        // This  method is revese the words and print complete string. Maintained Time omplexity to O(n).
+        public static string StringReverse(string s)
+        {
+            ArrayList ar = new ArrayList();
+
+            //adding space to end of the strinng as we are using the split with space.
+            s = s + " ";
+            string result = "";
+            string resultoutput = "";
+            string tmp = "";
+
+            //Split  the each word from string based on space
+            for (int i = 0; i < s.Length; i++)
+            {
+
+                if (s[i] != ' ')
+                {
+                    tmp = tmp + s[i];
+                    continue;
+                }
+
+                //Reverse Each Word
+                char[] chars = tmp.ToCharArray();
+                for (int x = 0, j = tmp.Length - 1; x < j; x++, j--)
+                {
+                    char c = chars[x];
+                    chars[x] = chars[j];
+                    chars[j] = c;
+                }
+
+                result = string.Join("", chars);
+
+                //Append Each Word to Final String
+                resultoutput = resultoutput + " " + result;
+
+               tmp = "";
+            }
+
+            return resultoutput;
+
+        }
+
+
+        //For Assinment-1 , Question3
         //This Method will calculate the minsum for an unique numbers in array.
         public static int minSum(int[] arr)
         {
             int l = arr.Length;
-            //int[] numbers = new int[100];
+            int[] numbers = new int[l];
             Array.Sort(arr);
             int sum = 0;
             int tmp = 0;
@@ -85,71 +129,23 @@ namespace groupassignment
                 }
                 else //If diffrence is eqial to 0, then making sure we add +1 and increment the number
                 {
-                    tmp = temp2 + diff + 1;
+                    
+                    tmp = temp2 + Math.Abs(diff) + 1;
                     sum = sum + tmp;
 
                 }
 
+                numbers[i]=tmp;
             }
 
+            Console.Write("Printing the Numbes used for the MinSum:\n");
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.Write("{0} ", numbers[i]);
+            }
             //program will print the sum output
             return sum;
         }
-
-
-
-
-  
-
-        //For Assingment-1, Question-3
-        // This  method is revese the words and print complete string
-        public static string StringReverse(string s)
-        {
-            ArrayList ar = new ArrayList();
-
-            //adding space to end of the strinng as split
-            s = s + " ";
-            string result = "";
-            string resultoutput = "";
-            string tmp = "";
-           
-            //Split  the string based on the space
-            for (int i = 0; i < s.Length; i++)
-            {
-
-                if (s[i] != ' ')
-                {
-                    tmp = tmp + s[i];
-                    continue;
-                }
-
-                ar.Add(tmp);
-                tmp = "";
-            }
-
-            //Reverse the string 
-            foreach (string a in ar)
-            {
-
-                char[] chars = a.ToCharArray();
-                for (int i = 0, j = a.Length - 1; i < j; i++, j--)
-                {
-                    char c = chars[i];
-                    chars[i] = chars[j];
-                    chars[j] = c;
-                }
-
-                result = string.Join("", chars);
-
-                resultoutput = resultoutput + " " + result;
-
-            }
-
-
-            return resultoutput;
-
-        }
-
 
         //For Assingment-1, Question-4
         // Start of the method to Print the Wordds in Descending order
@@ -179,37 +175,39 @@ namespace groupassignment
 
         //For Assingment-1, Question-5
         // This  method will check for common numbers between two arrays
+        //Time complexity less than O(n^2)
         public static int[] Intersect1(int[] nums1, int[] nums2)
         {
-            int i, x;
             int l1 = nums1.Length;
             int l2 = nums2.Length;
             Array.Sort(nums1);
             Array.Sort(nums2);
-
+            int len,x = 0, y = 0;
             List<int> result = new List<int>();
 
-            foreach (int num in nums1)
+            while (x<l1 && y< l2)
             {
-                x = 0;
-                i = x;
-                for (i = 0; i < l2; i++)
+                if (nums1[x] > nums2[y])
                 {
+                    y = y + 1;
 
-                    if (num == nums2[i])
-                    {
-
-                        result.Add(nums2[i]);
-                        i = l2;
-                        x = i;
-                       
-                    }
                 }
+                else if (nums1[x] < nums2[y])
+                {
+                    x = x + 1;
                 
-            }
+                }
+                else
+                {
+                    result.Add(nums1[x]);
+                    x = x + 1;
+                    y = y + 1;
+                    
+                }
+
+            }        
 
             return result.ToArray();
-            
         }
 
         //For Assingment-1, Question-6
@@ -403,12 +401,13 @@ namespace groupassignment
             }
             else if (useroption == 4)
             {
-                Console.Write("Please Enter your Text:");
+                Console.Write("Please Enter your Text (You Can enter Multiple Words with sapce Seperate):");
                 //n = Convert.ToInt32(Console.ReadLine());
 
                 //Validate the User entered number and if not Print the error and request them to Reenter the Number
                 userInput = Console.ReadLine();
 
+                //There are other ways to Split as showed in Question2, For this we are using split funtion.
                 string[] UserInputWords = userInput.Split(' ');
 
                 for (i = 0; i < UserInputWords.Length; i++)
@@ -525,10 +524,6 @@ namespace groupassignment
                 {
                     Console.WriteLine("\n\n There are No Common Numbers Available between Two Arrays !! \n\n");
                 }
-
-
-
-
 
 
             }
