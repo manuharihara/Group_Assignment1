@@ -175,14 +175,14 @@ namespace groupassignment
 
         //For Assingment-1, Question-5
         // This  method will check for common numbers between two arrays
-        //Time complexity less than O(n^2)
+        //Time complexity less than O(n)
         public static int[] Intersect1(int[] nums1, int[] nums2)
         {
             int l1 = nums1.Length;
             int l2 = nums2.Length;
             Array.Sort(nums1);
             Array.Sort(nums2);
-            int len,x = 0, y = 0;
+            int x = 0, y = 0;
             List<int> result = new List<int>();
 
             while (x<l1 && y< l2)
