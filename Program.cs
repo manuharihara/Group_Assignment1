@@ -270,10 +270,10 @@ namespace groupassignment
 
             //Obtain Userinput for Which operation they wanted to perform
             Console.Write("\n\n Please Select the Program you want to Run:");
-            Console.Write("\n\n Enter 1 to find greatest Number from the Liast of Numbers");
-            Console.Write("\n\n Enter 2 to Reverse String");
+            Console.Write("\n\n Enter 1 to find greatest Number from the List of Numbers");
+            Console.Write("\n\n Enter 2 to Reverse a String");
             Console.Write("\n\n Enter 3 to Provide Minimum Sum possible");
-            Console.Write("\n\n Enter 4 to Sort the Each word from print string output.");
+            Console.Write("\n\n Enter 4 to Sort each word from print string output.");
             Console.Write("\n\n Enter 5 to Compute Intersection of two arrays.");
             Console.Write("\n\n Enter 6 to Print True or Flase based on the absolute difference matched with in array.");
             Console.Write("\n\nEnter your Choise Now:");
@@ -354,6 +354,7 @@ namespace groupassignment
                 Console.Write("\n");
                 Console.WriteLine(StringReverse(userInput));
                 Console.Write("\n");
+                Console.ReadLine();
 
 
             }
