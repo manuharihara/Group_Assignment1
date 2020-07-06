@@ -333,6 +333,7 @@ namespace groupassignment
                     for (i = 0; i < result.Length; i++)
                     {
                        Console.Write("{0} ", result[i]);
+                    Console.ReadLine();
                     }
                     
 
@@ -398,11 +399,12 @@ namespace groupassignment
                 int x = minSum(UserInputArray);
 
                 Console.Write("\nThe minimum possible sum for the provided numbers are : {0} \n", x);
+                Console.ReadLine();
 
             }
             else if (useroption == 4)
             {
-                Console.Write("Please Enter your Text (You Can enter Multiple Words with sapce Seperate):");
+                Console.Write("Please Enter your Text (You Can enter Multiple Words with space Seperate):");
                 //n = Convert.ToInt32(Console.ReadLine());
 
                 //Validate the User entered number and if not Print the error and request them to Reenter the Number
@@ -431,6 +433,7 @@ namespace groupassignment
                     // Console.WriteLine(String.Join(" \n", word));
 
                     Console.WriteLine(word.Key + ": Sorted Output for Word {" + word.Value + "} is {" + UserSortedOutput + "}");
+                    Console.ReadLine();
                 }
 
                 //string UserSortedOutput = WordSort(word.Value, numbersArray);
@@ -518,12 +521,14 @@ namespace groupassignment
                     for (i = 0; i < Output1.Length; i++)
                     {
                         Console.Write("{0}  ", Output1[i]);
+                        Console.ReadLine();
                     }
 
                 }
                 else
                 {
                     Console.WriteLine("\n\n There are No Common Numbers Available between Two Arrays !! \n\n");
+                    Console.ReadLine();
                 }
 
 
@@ -590,6 +595,7 @@ namespace groupassignment
 
                 Console.WriteLine("User requested Absolute diffrence is {" + Userabsdiffout + "}");
                 Console.Write("\n\n");
+                Console.ReadLine();
 
             }
             else
@@ -597,6 +603,7 @@ namespace groupassignment
                 Console.Write("\n\nYou entered {0} Which is not a valid choise.\n", useroption);
                 Console.Write("\n\nPlease retry again with valid inputs.\n");
                 Console.Write("\n\n");
+                Console.ReadLine();
             }
 
 
